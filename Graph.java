@@ -32,8 +32,12 @@ public class Graph {
 		boolean removed = true;
 		Node node1 = getNodeFromName(n1);
 		Node node2 = getNodeFromName(n2);
-		removed = removed && node1.removeEdge(n2);
-		removed = removed && node2.removeEdge(n1);
+		if (directed) {
+			removed = removed && node1.removeEdge(n2);
+		} else {
+			removed = removed && node1.removeEdge(n2);
+			removed = removed && node2.removeEdge(n1);
+		}
 		return removed;
 	}
 	
