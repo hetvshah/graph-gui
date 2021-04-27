@@ -56,11 +56,20 @@ public class Graph {
 	public boolean deleteNode(String n1) {
 		for (Node n: nodes) {
 			if (n.getName().equals(n1)) {
+				deleteIncidentEdges(n1);
 				nodes.remove(n);
 				return true;
 			}
 		}
+		
 		return false;
+	}
+	
+	public void deleteIncidentEdges(String n1) {
+		ArrayList<Node> neighbors = getOutgoingNeighbors(n1);
+		for (Node n : neighbors) {
+			n.removeEdge(n1);
+		}
 	}
 	
 	public int getOutDegree(String n1) {
