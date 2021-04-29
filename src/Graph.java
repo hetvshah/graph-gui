@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Graph {
-	private boolean directed;
+	private boolean directed = true;
 	private boolean weighted;
 	private ArrayList<Node> nodes = new ArrayList<Node>();
 	
@@ -80,34 +80,38 @@ public class Graph {
 		}
 		return 0;
 	}
-	
+
 	public int numOfVertices() {
-		return nodes.size();
+	    return nodes.size();
 	}
-	
+
 	public ArrayList<Node> getOutgoingNeighbors(String n1) {
-		ArrayList<Object[]> edges = null;
-		ArrayList<Node> neighbors = new ArrayList<Node>();
-		
-		for (Node n: nodes) {
-			if (n.getName().equals(n1)) {
-				edges = n.getEdges();
-			}
-		}
-		
-		for (Object[] e : edges) {
-			neighbors.add(getNodeFromName(e[2].toString()));
-		}
-		return neighbors;
+	    ArrayList<Object[]> edges = null;
+	    ArrayList<Node> neighbors = new ArrayList<Node>();
+
+	    for (Node n: nodes) {
+	        if (n.getName().equals(n1)) {
+	            edges = n.getEdges();
+	        }
+	    }
+
+	    for (Object[] e : edges) {
+	        neighbors.add(getNodeFromName(e[2].toString()));
+	    }
+
+	    return neighbors;
 	}
-	
+
 	public Node getNodeFromName(String n1) {
-		for (Node n: nodes) {
-			if (n.getName().equals(n1)) {
-				return n;
-			}
-		}
-		return null;
+	    for (Node n: nodes) {
+	        if (n.getName().equals(n1)) {
+	            return n;
+	        }
+	    }
+	    return null;
 	}
-	
+
+	public String getNameFromIndex(int index) {
+	    return nodes.get(index).getName();
+	}
 }
