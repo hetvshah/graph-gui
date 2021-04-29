@@ -1,15 +1,24 @@
 import java.util.ArrayList;
+/**
+ *
+ * @author MattFriedman
+ *
+ */
 
 public class Graph {
 	private boolean directed = true;
 	private boolean weighted;
 	private ArrayList<Node> nodes = new ArrayList<Node>();
-	
+
+	public ArrayList<Node> getNodes() {
+	        return new ArrayList<Node>(nodes);
+	    }
+
 	public boolean addEdge(String n1, int edgeWeight, String n2) {
 		boolean added = true;
 		Node node1 = getNodeFromName(n1);
 		Node node2 = getNodeFromName(n2);
-		
+
 		if (weighted) {
 			if (directed) {
 				added = added && node1.addEdge(edgeWeight, n2);
@@ -27,7 +36,7 @@ public class Graph {
 		}
 		return added;
 	}
-	
+
 	public boolean deleteEdge(String n1, String n2) {
 		boolean removed = true;
 		Node node1 = getNodeFromName(n1);
@@ -40,8 +49,8 @@ public class Graph {
 		}
 		return removed;
 	}
-	
-	
+
+
 	public boolean addNode(String n1) {
 		for (Node n: nodes) {
 			if (n.getName().equals(n1)) {
@@ -52,7 +61,7 @@ public class Graph {
 		nodes.add(n);
 		return true;
 	}
-	
+
 	public boolean deleteNode(String n1) {
 		for (Node n: nodes) {
 			if (n.getName().equals(n1)) {
@@ -61,17 +70,17 @@ public class Graph {
 				return true;
 			}
 		}
-		
+
 		return false;
 	}
-	
+
 	public void deleteIncidentEdges(String n1) {
 		ArrayList<Node> neighbors = getOutgoingNeighbors(n1);
 		for (Node n : neighbors) {
 			n.removeEdge(n1);
 		}
 	}
-	
+
 	public int getOutDegree(String n1) {
 		for (Node n: nodes) {
 			if (n.getName().equals(n1)) {
