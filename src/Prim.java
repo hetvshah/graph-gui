@@ -25,6 +25,7 @@ public class Prim {
         }
         Graph mst = new Graph();
         Node start = graph.getNodeFromIndex(0);
+        
         //TODO: implement
 
         if (mst.numOfVertices() != this.graph.numOfVertices()) {
