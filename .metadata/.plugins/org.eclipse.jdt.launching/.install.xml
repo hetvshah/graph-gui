@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <dirs>
+<<<<<<< HEAD
     <entry loc="/Library/Java/JavaVirtualMachines/jdk-15.0.1.jdk/Contents/Home" stamp="1600179064000"/>
     <entry loc="/Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home" stamp="1500701362000"/>
     <entry loc="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home" stamp="1617845461000"/>
+=======
+    <entry loc="/Users/hetvishah/.p2/pool/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.macosx.x86_64_15.0.1.v20201027-0507/jre" stamp="1609561233420"/>
+    <entry loc="/Users/hetvishah/.p2/pool/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.macosx.x86_64_15.0.1.v20201027-0507" stamp="1609561233421"/>
+    <entry loc="/Library/Java/JavaVirtualMachines/jdk-15.0.2.jdk/Contents/Home" stamp="1607372989000"/>
+>>>>>>> 419e1aed252e8e3c4b8ea3fe59a1f00935203844
 </dirs>
