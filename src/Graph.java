@@ -114,4 +114,14 @@ public class Graph {
 	public String getNameFromIndex(int index) {
 	    return nodes.get(index).getName();
 	}
+
+	/**
+	 * accessor method for nodes
+	 * @param index the index of the node to be returned
+	 * @return the node in the specified index in the {@code nodes} ArrayList 
+	 */
+	public Node getNodeFromIndex(int index) {
+		return nodes.get(index);
+	}
+
 }
