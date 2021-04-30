@@ -61,4 +61,14 @@ public class Node {
 		}
 		return false;
 	}
+	
+	public boolean hasEdge(String neighbor) {
+	    for (Object[] e : edges) {
+            if (e[2].toString().equals(neighbor)) {
+                return true;
+            }
+        }
+	    
+	    return false;
+	}
 }

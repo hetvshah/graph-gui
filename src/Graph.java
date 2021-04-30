@@ -133,5 +133,4 @@ public class Graph {
 	public Node getNodeFromIndex(int index) {
 		return nodes.get(index);
 	}
-
 }
