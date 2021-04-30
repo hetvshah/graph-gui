@@ -8,9 +8,6 @@ import java.util.*;
 
 public class Kahns {
 
-
-
-
     /**
      * Creates a
      * @param g
@@ -55,7 +52,6 @@ public class Kahns {
         }
 
         return output;
-
     }
 
 }

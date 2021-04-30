@@ -1,30 +1,26 @@
 import java.util.ArrayList;
-/**
- *
- * @author MattFriedman
- *
- */
+
 public class Node {
-
+	
 	private String name;
-
+	
 	// Array format: starting edge, edge weight, ending edge
 	private ArrayList<Object[]> edges = new ArrayList<>();
-
+	
 	public Node(String id) {
 		this.name = id;
 	}
 	public String getName() {
 		return name;
 	}
-
+	
 	public int getDegree() {
 		return edges.size();
 	}
-
+	
 	public int getWeight(String end) {
 	    int weight = 1;
-
+	    
 	    for (Object[] e : edges) {
 	        if (e[2].toString().equals(end)) {
 	            weight = (int) e[1];
@@ -55,7 +51,7 @@ public class Node {
 
 	    return true;
 	}
-
+	
 	public boolean removeEdge(String neighbor) {
 		for (Object[] e : edges) {
 			if (e[2].toString().equals(neighbor)) {

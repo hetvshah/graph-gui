@@ -92,47 +92,12 @@ public class Kosaraju {
     // for testing purposes
     public static void main (String[] args) {
         Graph g = new Graph();
-<<<<<<< HEAD
-        g.addNode("Emily");
-        g.addNode("Sara");
-        g.addNode("Hetvi");
-        g.addNode("Matt");
-        
-        g.addEdge("Emily", 1, "Sara");
-        g.addEdge("Sara", 1, "Hetvi");
-        g.addEdge("Hetvi", 1, "Matt");
-        g.addEdge("Matt", 1, "Hetvi");
-        
-//        g.addNode("a");
-//        g.addNode("b");
-//        g.addNode("c");
-//        g.addNode("d");
-//        g.addNode("e");
-//        g.addNode("f");
-//        g.addNode("g");
-//        g.addNode("h");
-//        
-//        g.addEdge("a", 1, "b");
-//        g.addEdge("b", 1, "e");
-//        g.addEdge("b", 1, "f");
-//        g.addEdge("b", 1, "c");
-//        g.addEdge("c", 1, "g");
-//        g.addEdge("c", 1, "d");
-//        g.addEdge("d", 1, "c");
-//        g.addEdge("d", 1, "h");
-//        g.addEdge("h", 1, "h");
-//        g.addEdge("g", 1, "h");
-//        g.addEdge("g", 1, "f");
-//        g.addEdge("f", 1, "g");
-//        g.addEdge("e", 1, "a");
-//        g.addEdge("e", 1, "f");
-        
-=======
+       
 //        g.addNode("Emily");
 //        g.addNode("Sara");
 //        g.addNode("Hetvi");
 //        g.addNode("Matt");
-
+//        
 //        g.addEdge("Emily", 1, "Sara");
 //        g.addEdge("Sara", 1, "Hetvi");
 //        g.addEdge("Hetvi", 1, "Matt");
@@ -162,7 +127,6 @@ public class Kosaraju {
         g.addEdge("e", 1, "a");
         g.addEdge("e", 1, "f");
 
->>>>>>> b406db3aa5a0e139262fc425310c0aeb92090112
         Kosaraju kosaraju = new Kosaraju(g);
         List<List<String>> result = kosaraju.kosarajuAlg();
         System.out.println(result);
