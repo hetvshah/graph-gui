@@ -9,8 +9,8 @@ import java.util.*;
 public class Kahns {
 
     /**
-     * Creates a
-     * @param g
+     * Creates a topological sort of nodes given a graph
+     * @param g the given graph
      */
     public static ArrayList<Node> topologicalSort(Graph g) {
         PriorityQueue<Node> queue = new PriorityQueue<Node>();
