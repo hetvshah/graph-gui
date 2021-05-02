@@ -13,6 +13,23 @@ public class Statistics {
     public Statistics (Graph g) {
         this.g = g;
     }
+
+    public double homophily(String c1, String c2) {
+        ArrayList<Node> nodes = g.getNodes();
+        int color1 = 0;
+        int color2 = 0;
+        for (int i = 0; i < nodes.size(); i++) {
+            if (nodes.get(i).getColor().equals(c1)) {
+                color1++;
+            } else if (nodes.get(i).getColor().equals(c2)) {
+                color2++;
+            }
+        }
+
+        double p = (double)color1 / (color1 + color2);
+        double q = (double)color2 / (color1 + color2);
+        return 2 * p * q;
+    }
     
     /**
      * Finds the factorial of "num" 
