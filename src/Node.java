@@ -29,6 +29,18 @@ public class Node {
 
 	    return weight;
 	}
+	
+	public int getWeight(Node end) {
+	    int weight = 1;
+	    
+	    for (Object[] e : edges) {
+	        if (e[2].toString().equals(end.getName())) {
+	            weight = (int) e[1];
+	        }
+	    }
+
+	    return weight;
+	}
 
 	public ArrayList<Object[]> getEdges() {
 	    return edges;
@@ -63,12 +75,12 @@ public class Node {
 	}
 	
 	public boolean hasEdge(String neighbor) {
-	    for (Object[] e : edges) {
+        for (Object[] e : edges) {
             if (e[2].toString().equals(neighbor)) {
                 return true;
             }
         }
-	    
-	    return false;
-	}
+        
+        return false;
+    }
 }
