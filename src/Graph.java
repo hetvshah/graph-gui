@@ -111,6 +111,23 @@ public class Graph {
 
 	    return neighbors;
 	}
+	
+	public ArrayList<Node> getOutgoingNeighbors(Node n1) {
+	    ArrayList<Object[]> edges = null;
+	    ArrayList<Node> neighbors = new ArrayList<Node>();
+
+	    for (Node n: nodes) {
+	        if (n.getName().equals(n1.getName())) {
+	            edges = n.getEdges();
+	        }
+	    }
+
+	    for (Object[] e : edges) {
+	        neighbors.add(getNodeFromName(e[2].toString()));
+	    }
+
+	    return neighbors;
+	}
 
 	public Node getNodeFromName(String n1) {
 	    for (Node n: nodes) {
@@ -133,14 +150,5 @@ public class Graph {
 	public Node getNodeFromIndex(int index) {
 		return nodes.get(index);
 	}
-	
-	public Integer getIndexFromName(String name) {
-        for (int i = 0; i < nodes.size(); i++) {
-            if (nodes.get(i).getName().equals(name)) {
-                return i;
-            }
-        }
-        
-        return null;
-    }
+
 }
