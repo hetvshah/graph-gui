@@ -133,5 +133,14 @@ public class Graph {
 	public Node getNodeFromIndex(int index) {
 		return nodes.get(index);
 	}
-
+	
+	public Integer getIndexFromName(String name) {
+        for (int i = 0; i < nodes.size(); i++) {
+            if (nodes.get(i).getName().equals(name)) {
+                return i;
+            }
+        }
+        
+        return null;
+    }
 }
