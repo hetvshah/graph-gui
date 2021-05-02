@@ -41,8 +41,9 @@ public class Prim {
                     vertex = node;
                 }
             }
-            // for (Node neighbor : vertex.)
-        // }
+            for (Node neighbor : graph.getOutgoingNeighbors(vertex)) {
+                // if ()
+            }
 
         //TODO: implement
 
