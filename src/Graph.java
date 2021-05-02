@@ -134,6 +134,12 @@ public class Graph {
 		return nodes.get(index);
 	}
 	
+	/**
+	 * Iterators through the nodes to find the node with the name "name"
+	 * @param name
+	 * @return the index that this node is at
+	 */
+	
 	public Integer getIndexFromName(String name) {
         for (int i = 0; i < nodes.size(); i++) {
             if (nodes.get(i).getName().equals(name)) {

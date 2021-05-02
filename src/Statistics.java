@@ -4,16 +4,19 @@ public class Statistics {
     
     Graph g;
     
-    /*
-     * Constructor that initalizes the graph
+    /**
+     * Constructor that initializes the graph
+     * @param g
      */
     
     public Statistics (Graph g) {
         this.g = g;
     }
     
-    /*
+    /**
      * Finds the factorial of "num" 
+     * @param num
+     * @return the factorial
      */
     
     public double findFactorial(int num) {
@@ -26,10 +29,12 @@ public class Statistics {
         return total;
     }
     
-    /*
+    /**
      * Returns the clustering coefficient of the specified node by finding the number of neighbors
      * who are friends with each other and the total number of ways 2 neighbors can be friends and
      * dividing the two.
+     * @param node
+     * @return the clustering coefficient
      */
     
     public double getClusteringCoefficient(String node) {
@@ -58,8 +63,9 @@ public class Statistics {
         
     }
     
-    /* 
+    /**
      * Main method used to test Statistics method
+     * @param args
      */
     
     public static void main (String [] args) {
