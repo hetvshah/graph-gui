@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Statistics {
     
@@ -56,6 +57,21 @@ public class Statistics {
         
         return clusteringCoeff;
         
+    }
+
+    public HashMap getPageRanks() {
+        HashMap<Node, Double> pageRanks = new HashMap<Node, Double>();
+        ArrayList<Node> nodes = g.getNodes();
+        double size = (double) g.numOfVertices();
+        for (Node node : nodes) {
+            pageRanks.put(node, 1.0 / size);
+        }
+        int counter = 0;
+        while (counter < 52) {
+            // TODO: implement
+            counter++;
+        }
+        return pageRanks;
     }
     
     /* 
