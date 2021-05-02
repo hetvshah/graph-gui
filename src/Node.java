@@ -4,7 +4,7 @@ public class Node {
 	
 	private String name;
 	
-	// Array format: starting edge, edge weight, ending edge
+	// Object array format: starting node, edge weight, ending node
 	private ArrayList<Object[]> edges = new ArrayList<>();
 	
 	public Node(String id) {
