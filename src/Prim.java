@@ -60,7 +60,8 @@ public class Prim {
         if (mst.numOfVertices() != this.graph.numOfVertices()) {
             throw new IllegalArgumentException();
         }
+        
         return mst;
     }
-
 }
+        

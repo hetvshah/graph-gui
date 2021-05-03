@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class Node {
 	
 	private String name;
+	private String color;
 	
 	// Array format: starting edge, edge weight, ending edge
 	private ArrayList<Object[]> edges = new ArrayList<>();
@@ -10,6 +11,16 @@ public class Node {
 	public Node(String id) {
 		this.name = id;
 	}
+
+	public Node(String id, String color) {
+		this.name = id;
+		this.color = color;
+	}
+
+	public String getColor() {
+		return this.color;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -94,4 +105,14 @@ public class Node {
 		}
 		return false;
 	}
+	
+	public boolean hasEdge(String neighbor) {
+        for (Object[] e : edges) {
+            if (e[2].toString().equals(neighbor)) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
 }

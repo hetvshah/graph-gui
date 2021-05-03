@@ -7,17 +7,20 @@ public class BFS {
     Graph g;
     List<String> shortestPath = new ArrayList<>();
     
-    /*
+    /**
      * Constructor to initialize the input graph
+     * @param input
      */
     
     public BFS (Graph input) {
         g = input;
     }
 
-    /* 
+    /**
      * Recursive function that traces up the parent pointers from the specified ending vertex
      * to the specified starting vertex. Updates shortestPath with this path.
+     * @param parentArr
+     * @param index
      */
     
     public void getPath (String[] parentArr, Integer index) {
@@ -32,9 +35,13 @@ public class BFS {
 
     }
 
-    /*
-     * Implements the BFS algorithm and uses an array to keep track of the parents of each node and
-     * returns the shortest path between two specified nodes.
+    /**
+     *
+     * Implements the BFS algorithm and uses an array to keep track of the parents of each node 
+     * 
+     * @param start
+     * @param end
+     * @return the shortest path between two specified nodes
      */
 
     public List<String> bfsAlgorithm(String start, String end) {
@@ -89,8 +96,9 @@ public class BFS {
         return shortestPath;
     }
     
-    /*
+    /**
      * Main method to test the program
+     * @param args
      */
     
     public static void main (String[] args) {
