@@ -41,11 +41,21 @@ public class Prim {
                     vertex = node;
                 }
             }
+            // parent map construction
             for (Node neighbor : graph.getOutgoingNeighbors(vertex)) {
-                // if ()
+                int weight = vertex.getWeight(neighbor);
+                if (weight < key.get(neighbor)) {
+                    key.put(neighbor, weight);
+                    parent.put(neighbor, vertex);
+                }
             }
-
-        //TODO: implement
+        }
+        for (Node node : parent.keySet()) {
+            mst.addNode(node);
+            Node parentNode = parent.get(node);
+            mst.addNode(parentNode);
+            mst.addEdge(parentNode, parentNode.getWeight(node), node);
+        }
 
         if (mst.numOfVertices() != this.graph.numOfVertices()) {
             throw new IllegalArgumentException();

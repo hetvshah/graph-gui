@@ -68,7 +68,9 @@ public class Statistics {
         }
         int counter = 0;
         while (counter < 52) {
-            // TODO: implement
+            for (Node node : nodes) {
+                // TODO: implement
+            }
             counter++;
         }
         return pageRanks;

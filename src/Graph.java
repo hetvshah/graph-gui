@@ -12,8 +12,8 @@ public class Graph {
 	private ArrayList<Node> nodes = new ArrayList<Node>();
 
 	public ArrayList<Node> getNodes() {
-	        return new ArrayList<Node>(nodes);
-	    }
+	    return new ArrayList<Node>(nodes);
+	}
 
 	public boolean addEdge(String n1, int edgeWeight, String n2) {
 		boolean added = true;
@@ -38,6 +38,34 @@ public class Graph {
 		return added;
 	}
 
+	/**
+	 * helper method to add edges in the implementation of Prim's algorithm
+	 * @param node1 the starting {@code Node} object
+	 * @param edgeWeight the weight of the edge
+	 * @param node2 the ending {@code Node} object
+	 * @return true if the specified edge does not already exist in the graph and has been successfully added
+	 * and false otherwise
+	 */
+	public boolean addEdge(Node node1, int edgeWeight, Node node2) {
+		boolean added = true;
+		if (weighted) {
+			if (directed) {
+				added = added && node1.addEdge(edgeWeight, node2);
+			} else {
+				added = added && node1.addEdge(edgeWeight, node2);
+				added = added && node2.addEdge(edgeWeight, node1);
+			}
+		} else {
+			if (directed) {
+				added = added && node1.addEdge(1, node2);
+			} else {
+				added = added && node1.addEdge(1, node2);
+				added = added && node2.addEdge(1, node1);
+			}
+		}
+		return added;
+	}
+
 	public boolean deleteEdge(String n1, String n2) {
 		boolean removed = true;
 		Node node1 = getNodeFromName(n1);
@@ -51,7 +79,6 @@ public class Graph {
 		return removed;
 	}
 
-
 	public boolean addNode(String n1) {
 		for (Node n: nodes) {
 			if (n.getName().equals(n1)) {
@@ -60,6 +87,22 @@ public class Graph {
 		}
 		Node n = new Node(n1);
 		nodes.add(n);
+		return true;
+	}
+
+	/**
+	 * helper method to add Nodes in the implementation of Prim's algorithm
+	 * @param newNode the {@code Node} object to be added to the graph
+	 * @return true if the Node object passed in does not already exist in the graph and has been successfully added
+	 * and false otherwise
+	 */
+	public boolean addNode(Node newNode) {
+		for (Node n : nodes) {
+			if (n.getName().equals(newNode.getName())) {
+				return false;
+			}
+		}
+		nodes.add(newNode);
 		return true;
 	}
 
