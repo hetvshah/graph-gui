@@ -69,6 +69,7 @@ public class Prim {
 
     public static void main(String[] args) {
         Graph graph = new Graph();
+        graph.setDirected(true);
         graph.addNode("A");
         graph.addNode("B");
         graph.addNode("C");
