@@ -92,8 +92,6 @@ public class Statistics {
      * @return a hashmap mapping nodes to their page ranks
      */
     public HashMap<Node, Double> getPageRanks() {
-        System.out.println();
-        System.out.println("PageRank runs: ");
         HashMap<Node, Double> pageRanks = new HashMap<Node, Double>();
         ArrayList<Node> nodes = g.getNodes();
         double size = (double) g.numOfVertices();
@@ -102,8 +100,12 @@ public class Statistics {
             pageRanks.put(node, 1.0 / size);
         }
         int counter = 0;
+        // initialize {@code temp} HashMap
         HashMap<Node, Double> temp = new HashMap<Node, Double>();
-        while (counter < 100) {
+        for (Node node : nodes) {
+            temp.put(node, 0.0);
+        }
+        while (counter < 52) {
             // reset temp
             for (Node node : nodes) {
                 temp.put(node, 0.0);
@@ -128,21 +130,14 @@ public class Statistics {
             // update {@code pageRanks} HashMap
             boolean unchanged = true;
             for (Node node : pageRanks.keySet()) {
-                if (pageRanks.get(node) != temp.get(node)) {
+                if (!pageRanks.get(node).equals(temp.get(node))) {
                     unchanged = false;
                     pageRanks.put(node, temp.get(node));
                 }
-                pageRanks.put(node, temp.get(node));
             }
             if (unchanged) {
                 return pageRanks;
             }
-            
-            System.out.println("Run: " + counter);
-            for (Node node : pageRanks.keySet()) {
-                System.out.println(node.getName() + ": " + pageRanks.get(node));
-            }
-            System.out.println();
             counter++;
         }
         return pageRanks;
@@ -180,18 +175,19 @@ public class Statistics {
         
         // System.out.println(stat.getClusteringCoefficient("Sleep"));
         
+        g.setDirected(true);
         g.addNode("A");
         g.addNode("B");
-        // g.addNode("C");
-        // g.addNode("D");
-        // g.addNode("E");
+        g.addNode("C");
+        g.addNode("D");
+        g.addNode("E");
 
         g.addEdge("A", 1, "B");
-        // g.addEdge("A", 1, "E");
-        // g.addEdge("B", 1, "E");
-        // g.addEdge("C", 1, "D");
-        // g.addEdge("C", 1, "E");
-        // g.addEdge("D", 1, "E");
+        g.addEdge("A", 1, "E");
+        g.addEdge("B", 1, "E");
+        g.addEdge("C", 1, "D");
+        g.addEdge("C", 1, "E");
+        g.addEdge("D", 1, "E");
         
         Statistics stat = new Statistics(g);
         HashMap<Node, Double> pageRanks = stat.getPageRanks();
