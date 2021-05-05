@@ -384,9 +384,9 @@ public class Display {
                          "Please enter name and color of the node.", JOptionPane.OK_CANCEL_OPTION);
                 if (result == JOptionPane.OK_OPTION) {
                     graph.addNode(name.getText(), color.getText());
-                    
-                   System.out.println("Added node " + "\"" + name.getText() + "\"" + " with color " + 
-                   color.getText());
+                   
+                   System.out.println("name: " + name.getText());
+                   System.out.println("color: " + color.getText());
                 }
             }
          };
@@ -413,7 +413,7 @@ public class Display {
                 if (result == JOptionPane.OK_OPTION) {
                    graph.addNode(name.getText());
                     
-                   System.out.println("Added node \"" + name.getText() + "\"");
+                   System.out.println("name: " + name.getText());
                 }
             }
          };
@@ -449,10 +449,11 @@ public class Display {
                          "Please enter the nodes to add an edge between (and their weight).", 
                          JOptionPane.OK_CANCEL_OPTION);
                 if (result == JOptionPane.OK_OPTION) {
-                   graph.addEdge(node1.getText(), Integer.parseInt(weight.getText()), node2.getText());
-                   
-                   System.out.println("Added edge from \"" + node1.getText() + "\" to \"" + node2.getText() + 
-                           "\" with edge weight " + weight.getText());
+                   graph.addEdge(node1.getText(), Integer.parseInt(weight.toString()), node2.getText());
+                    
+                   System.out.println("node 1: " + node1.getText());
+                   System.out.println("node 2: " + node2.getText());
+                   System.out.println("weight: " + weight.getText());
                 }
             }
          };
@@ -484,7 +485,8 @@ public class Display {
                          JOptionPane.OK_CANCEL_OPTION);
                 if (result == JOptionPane.OK_OPTION) {
                    graph.addEdge(node1.getText(), 1, node2.getText());
-                   System.out.println("Added edge from \"" + node1.getText() + "\" to \"" + node2.getText() + "\"");
+                   System.out.println("node 1: " + node1.getText());
+                   System.out.println("node 2: " + node2.getText());
                 }
             }
          };
