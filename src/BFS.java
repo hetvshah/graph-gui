@@ -5,7 +5,7 @@ public class BFS {
     
     private boolean disconnected = false;
     Graph g;
-    List<String> shortestPath = new ArrayList<>();
+    ArrayList<String> shortestPath = new ArrayList<>();
     
     /**
      * Constructor to initialize the input graph
@@ -44,7 +44,7 @@ public class BFS {
      * @return the shortest path between two specified nodes
      */
 
-    public List<String> bfsAlgorithm(String start, String end) {
+    public ArrayList<String> bfsAlgorithm(String start, String end) {
         
         boolean stop = false;
         disconnected = false;

@@ -1,6 +1,12 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * 
+ * @author hetvishah, emilypaul, saraxin
+ *
+ */
+
 public class Statistics {
     
     Graph g;
@@ -86,18 +92,24 @@ public class Statistics {
      * @return a hashmap mapping nodes to their page ranks
      */
     public HashMap<Node, Double> getPageRanks() {
+        System.out.println();
+        System.out.println("PageRank runs: ");
         HashMap<Node, Double> pageRanks = new HashMap<Node, Double>();
         ArrayList<Node> nodes = g.getNodes();
         double size = (double) g.numOfVertices();
+        // initialize page ranks
         for (Node node : nodes) {
             pageRanks.put(node, 1.0 / size);
         }
         int counter = 0;
         HashMap<Node, Double> temp = new HashMap<Node, Double>();
-        while (counter < 52) {
+        while (counter < 100) {
             // reset temp
             for (Node node : nodes) {
                 temp.put(node, 0.0);
+                if (g.getOutgoingNeighbors(node).size() == 0) {
+                    temp.put(node, pageRanks.get(node));
+                }
             }
             for (Node node : nodes) {
                 // calculate contribution to each neighbor
@@ -110,7 +122,6 @@ public class Statistics {
                 }
                 // distribute rank
                 for (Node neighbor : g.getOutgoingNeighbors(node)) {
-                    // temp.put(neighbor, temp.get(neighbor) + )
                     temp.put(neighbor, temp.get(neighbor) + contribution);
                 }
             }
@@ -121,10 +132,17 @@ public class Statistics {
                     unchanged = false;
                     pageRanks.put(node, temp.get(node));
                 }
+                pageRanks.put(node, temp.get(node));
             }
             if (unchanged) {
-                break;
+                return pageRanks;
             }
+            
+            System.out.println("Run: " + counter);
+            for (Node node : pageRanks.keySet()) {
+                System.out.println(node.getName() + ": " + pageRanks.get(node));
+            }
+            System.out.println();
             counter++;
         }
         return pageRanks;
@@ -141,25 +159,45 @@ public class Statistics {
        
         Graph g = new Graph();
         
-        g.addNode("Emily");
-        g.addNode("Matt");
-        g.addNode("Sara");
-        g.addNode("Hetvi");
-        g.addNode("Sleep");
+        // g.addNode("Emily");
+        // g.addNode("Matt");
+        // g.addNode("Sara");
+        // g.addNode("Hetvi");
+        // g.addNode("Sleep");
         
-        g.addEdge("Sleep", 1, "Emily");
-        g.addEdge("Emily", 1, "Sleep");
-        g.addEdge("Sleep", 1, "Hetvi");
-        g.addEdge("Hetvi", 1, "Sleep");
-        g.addEdge("Sleep", 1, "Matt");
-        g.addEdge("Matt", 1, "Sleep");
-        g.addEdge("Sleep", 1, "Sara");
-        g.addEdge("Sara", 1, "Sleep");
-        g.addEdge("Emily", 1, "Sara");
-        g.addEdge("Sara", 1, "Emily");
+        // g.addEdge("Sleep", 1, "Emily");
+        // g.addEdge("Emily", 1, "Sleep");
+        // g.addEdge("Sleep", 1, "Hetvi");
+        // g.addEdge("Hetvi", 1, "Sleep");
+        // g.addEdge("Sleep", 1, "Matt");
+        // g.addEdge("Matt", 1, "Sleep");
+        // g.addEdge("Sleep", 1, "Sara");
+        // g.addEdge("Sara", 1, "Sleep");
+        // g.addEdge("Emily", 1, "Sara");
+        // g.addEdge("Sara", 1, "Emily");
+        
+        // Statistics stat = new Statistics(g);
+        
+        // System.out.println(stat.getClusteringCoefficient("Sleep"));
+        
+        g.addNode("A");
+        g.addNode("B");
+        // g.addNode("C");
+        // g.addNode("D");
+        // g.addNode("E");
+
+        g.addEdge("A", 1, "B");
+        // g.addEdge("A", 1, "E");
+        // g.addEdge("B", 1, "E");
+        // g.addEdge("C", 1, "D");
+        // g.addEdge("C", 1, "E");
+        // g.addEdge("D", 1, "E");
         
         Statistics stat = new Statistics(g);
+        HashMap<Node, Double> pageRanks = stat.getPageRanks();
+        for (Node node : pageRanks.keySet()) {
+            System.out.println(node.getName() + ": " + pageRanks.get(node));
+        }
         
-        System.out.println(stat.getClusteringCoefficient("Sleep"));
     }
 }

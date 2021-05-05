@@ -3,8 +3,8 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- *
- * @author HetviShah
+ * 
+ * @author hetvishah
  *
  */
 
@@ -12,11 +12,21 @@ public class Kosaraju {
 
     Graph inputGraph;
 
+    /**
+     * Constructor that intializes the graph
+     * @param g
+     */
     public Kosaraju(Graph g) {
         inputGraph = g;
     }
-
-    // recursively visits all nodes within the connected component of "start"
+    
+    /**
+     * Recursively visits all nodes within the connected component of "start"
+     * @param g input graph
+     * @param start source node
+     * @param discovered list of discovered nodes
+     * @param order of discovering
+     */
     public void DFSVisit(Graph g, String start, List<String> discovered, List<String> order) {
         ArrayList<Node> outNeighbors = g.getOutgoingNeighbors(start);
 
@@ -30,7 +40,10 @@ public class Kosaraju {
         order.add(start);
     }
 
-    // iterates through all the vertices and calls DFSVisit on those who haven't been discovered yet
+    /**
+     * Iterates through all the vertices and calls DFSVisit on those who haven't been discovered yet
+     * @return List<String> list of discovered nodes in order
+     */
     public List<String> DFS() {
         List<String> discovered = new ArrayList<>();
         List<String> order = new ArrayList<String>();
@@ -45,7 +58,10 @@ public class Kosaraju {
 
     }
 
-    // computes the transpose of the input graph
+    /**
+     * Iterates through all the vertices and calls DFSVisit on those who haven't been discovered yet
+     * @return transposed graph
+     */
     public Graph getTranspose() {
         Graph gTranspose = new Graph();
 
@@ -66,7 +82,10 @@ public class Kosaraju {
         return gTranspose;
     }
 
-    // Kosaraju's algorithm: returns a list of each SCC
+    /**
+     * Kosaraju's algorithm: returns a list of each SCC
+     * @return list of each SCC
+     */
     public List<List<String>> kosarajuAlg(){
         List<List<String>> result = new ArrayList<>();
 
@@ -89,43 +108,49 @@ public class Kosaraju {
         return result;
     }
 
-    // for testing purposes
+    /**
+     * For testing purposes
+     * @param args
+     */
+    
     public static void main (String[] args) {
         Graph g = new Graph();
+        
+        g.setDirected(true);
        
-//        g.addNode("Emily");
-//        g.addNode("Sara");
-//        g.addNode("Hetvi");
-//        g.addNode("Matt");
-//        
-//        g.addEdge("Emily", 1, "Sara");
-//        g.addEdge("Sara", 1, "Hetvi");
-//        g.addEdge("Hetvi", 1, "Matt");
-//        g.addEdge("Matt", 1, "Hetvi");
+        g.addNode("Emily");
+        g.addNode("Sara");
+        g.addNode("Hetvi");
+        g.addNode("Matt");
+        
+        g.addEdge("Emily", 1, "Sara");
+        g.addEdge("Sara", 1, "Hetvi");
+        g.addEdge("Hetvi", 1, "Matt");
+        g.addEdge("Matt", 1, "Hetvi");
 
-        g.addNode("a");
-        g.addNode("b");
-        g.addNode("c");
-        g.addNode("d");
-        g.addNode("e");
-        g.addNode("f");
-        g.addNode("g");
-        g.addNode("h");
-
-        g.addEdge("a", 1, "b");
-        g.addEdge("b", 1, "e");
-        g.addEdge("b", 1, "f");
-        g.addEdge("b", 1, "c");
-        g.addEdge("c", 1, "g");
-        g.addEdge("c", 1, "d");
-        g.addEdge("d", 1, "c");
-        g.addEdge("d", 1, "h");
-        g.addEdge("h", 1, "h");
-        g.addEdge("g", 1, "h");
-        g.addEdge("g", 1, "f");
-        g.addEdge("f", 1, "g");
-        g.addEdge("e", 1, "a");
-        g.addEdge("e", 1, "f");
+//        g.addNode("a");
+//        g.addNode("b");
+//        g.addNode("c");
+//        g.addNode("d");
+//        g.addNode("e");
+//        g.addNode("f");
+//        g.addNode("g");
+//        g.addNode("h");
+//
+//        g.addEdge("a", 1, "b");
+//        g.addEdge("b", 1, "e");
+//        g.addEdge("b", 1, "f");
+//        g.addEdge("b", 1, "c");
+//        g.addEdge("c", 1, "g");
+//        g.addEdge("c", 1, "d");
+//        g.addEdge("d", 1, "c");
+//        g.addEdge("d", 1, "h");
+//        g.addEdge("h", 1, "h");
+//        g.addEdge("g", 1, "h");
+//        g.addEdge("g", 1, "f");
+//        g.addEdge("f", 1, "g");
+//        g.addEdge("e", 1, "a");
+//        g.addEdge("e", 1, "f");
 
         Kosaraju kosaraju = new Kosaraju(g);
         List<List<String>> result = kosaraju.kosarajuAlg();

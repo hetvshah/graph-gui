@@ -1,8 +1,10 @@
 import java.awt.Color;
+import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -23,7 +25,7 @@ public class Display {
     
     public static void main(String[] args) {   
         JFrame frame = new JFrame("Graph UI");
-        frame.setSize(650, 550);
+        frame.setSize(650, 500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
 
@@ -84,6 +86,8 @@ public class Display {
         GSCCs.setBounds(240,40,280,25);
         panel.add(GSCCs);
         
+        kosarajuButton(GSCCs);
+        
         JButton MSTs = new JButton("Find the MST (Prim's alg)");
         MSTs.setBounds(240,70,280,25);
         panel.add(MSTs);
@@ -92,9 +96,13 @@ public class Display {
         kahn.setBounds(240,100,280,25);
         panel.add(kahn);
         
+        kahnButton(kahn);
+        
         JButton shortestPath = new JButton("Find Shortest Path (BFS)");
         shortestPath.setBounds(240,130,280,25);
         panel.add(shortestPath);
+        
+        shortestPathButton(shortestPath);
         
         // STATISTICS
         
@@ -116,13 +124,9 @@ public class Display {
         panel.add(homophily);
         
         homophilyButton(homophily);
-        
-        JButton betweenness = new JButton("Find betweenness for an edge");
-        betweenness.setBounds(550,100,280,25);
-        panel.add(betweenness);
-        
+
         JButton pageRank = new JButton("Run PageRank");
-        pageRank.setBounds(550,130,280,25);
+        pageRank.setBounds(550,110,280,25);
         panel.add(pageRank);
         
         buttonEnable(shortestPath, kahn, GSCCs, MSTs, homophily);
@@ -172,6 +176,93 @@ public class Display {
           });
     }
     
+    private static void kahnButton(JButton kahn) {
+        for( ActionListener al : kahn.getActionListeners() ) {
+            kahn.removeActionListener( al );
+        }
+
+        ActionListener listener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ArrayList<Node> output = Kahns.topologicalSort(graph);
+                
+                ArrayList<String> names = new ArrayList<String>();
+                
+                for(Node node : output) {
+                    names.add(node.getName());
+                }
+
+                JOptionPane.showConfirmDialog(null, "The topo sort for this graph is " + output, 
+                        "Kahn's Alg", JOptionPane.DEFAULT_OPTION); 
+            }
+        };
+
+        kahn.addActionListener(listener);
+    }
+    
+    private static void kosarajuButton(JButton GSCCs) {
+        for( ActionListener al : GSCCs.getActionListeners() ) {
+            GSCCs.removeActionListener( al );
+        }
+
+        ActionListener listener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Kosaraju kosarajuAlg = new Kosaraju(graph);
+
+                java.util.List<java.util.List<String>> output = kosarajuAlg.kosarajuAlg();
+
+                JOptionPane.showConfirmDialog(null, "The GSCCs are " + output, 
+                        "Kosaraju's Alg", JOptionPane.DEFAULT_OPTION); 
+            }
+        };
+
+        GSCCs.addActionListener(listener);
+    }
+
+    private static void shortestPathButton(JButton shortestPath) {
+        for( ActionListener al : shortestPath.getActionListeners() ) {
+            shortestPath.removeActionListener( al );
+        }
+
+        ActionListener listener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                BFS bfs = new BFS(graph);
+                JTextField node1 = new JTextField(5);
+                JTextField node2 = new JTextField(5);
+                
+                JPanel myPanel = new JPanel();
+
+                myPanel.add(new JLabel("Start node:"));
+                myPanel.add(node1); 
+                myPanel.add(new JLabel("End node:"));
+                myPanel.add(node2); 
+
+                int result = JOptionPane.showConfirmDialog(null, myPanel, 
+                         "Enter the two nodes.", JOptionPane.OK_CANCEL_OPTION);
+                if (result == JOptionPane.OK_OPTION) {
+                    System.out.println("node1: " + node1.getText());
+                    System.out.println("node2: " + node2.getText());
+
+                    ArrayList<String> output = bfs.bfsAlgorithm(node1.getText(), node2.getText());
+                    
+                    if (output.isEmpty()) {
+                        JOptionPane.showConfirmDialog(null, "There is no path from " + 
+                                node1.getText() + " to " + node2.getText() + ".", "Shortest Path", 
+                                JOptionPane.DEFAULT_OPTION); 
+                    } else {
+                        JOptionPane.showConfirmDialog(null, "The shortest path from " + 
+                                node1.getText() + " to " + node2.getText() + " is " + output, 
+                                "Shortest Path", JOptionPane.DEFAULT_OPTION); 
+                    }
+                }
+            }
+         };
+        
+         shortestPath.addActionListener(listener);
+    }
+    
     private static void homophilyButton(JButton homophily) {
         for( ActionListener al : homophily.getActionListeners() ) {
             homophily.removeActionListener( al );
@@ -199,7 +290,8 @@ public class Display {
                     System.out.println("color2: " + color2.getText());
                    double homophilyStat = stats.homophily(color1.getText(), color2.getText());
                    
-                   System.out.println(homophilyStat);
+                   JOptionPane.showConfirmDialog(null, "The homophily is " + homophilyStat, 
+                           "Homophily", JOptionPane.DEFAULT_OPTION); 
                 }
             }
          };
@@ -230,7 +322,9 @@ public class Display {
                    System.out.println("name: " + node.getText());
                    double clusterCoeff = stats.getClusteringCoefficient(node.getText());
                    
-                   System.out.println(clusterCoeff);
+                   JOptionPane.showConfirmDialog(null, "The clustering coefficient of " + node.getText() + 
+                           " is " + clusterCoeff, "Clustering Coefficient", 
+                           JOptionPane.DEFAULT_OPTION); 
                 }
             }
          };

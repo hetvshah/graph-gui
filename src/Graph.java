@@ -22,6 +22,10 @@ public class Graph {
 	public void setDirected(boolean isDirected) {
         this.directed = isDirected;
     }
+	
+	public boolean getDirected() {
+        return directed;
+    }
 
 	public boolean addEdge(String n1, int edgeWeight, String n2) {
 		boolean added = true;
