@@ -81,7 +81,11 @@ public class Statistics {
         
     }
 
-    public HashMap getPageRanks() {
+    /**
+     * Returns the page rank of each node in the graph
+     * @return a hashmap mapping nodes to their page ranks
+     */
+    public HashMap<Node, Double> getPageRanks() {
         HashMap<Node, Double> pageRanks = new HashMap<Node, Double>();
         ArrayList<Node> nodes = g.getNodes();
         double size = (double) g.numOfVertices();
