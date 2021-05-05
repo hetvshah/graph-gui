@@ -10,15 +10,25 @@ public class Graph {
 	private boolean directed = Display.isDirected;
 	private boolean weighted = Display.isWeighted;
 	private ArrayList<Node> nodes = new ArrayList<Node>();
-
+	
+	/** 
+	 * @return the arraylist of nodes
+	 */
 	public ArrayList<Node> getNodes() {
 	    return new ArrayList<Node>(nodes);
 	}
 	
+	/** 
+	 * 
+	 * @param isWeighted, given input of whether graph should be weighted
+	 */
 	public void setWeighted(boolean isWeighted) {
 	    this.weighted = isWeighted;
 	}
-	
+	/**
+	 * Sets the boolean of whether graph is directed or not
+	 * @param isDirected
+	 */
 	public void setDirected(boolean isDirected) {
         this.directed = isDirected;
     }
@@ -27,6 +37,14 @@ public class Graph {
         return directed;
     }
 
+	/**
+	 * Adding an edge given the node names and weight
+	 * @param n1 - first node, where the edge starts from
+	 * @param edgeWeight - weight of the edge, 1 if unweighted
+	 * @param n2 - adjacent node in the edge
+	 * @return boolean of whether edge was added. If one of the noded doesn't exist, 
+	 * or edge already exists, will return false
+	 */
 	public boolean addEdge(String n1, int edgeWeight, String n2) {
 		boolean added = true;
 		Node node1 = getNodeFromName(n1);
@@ -77,7 +95,13 @@ public class Graph {
 		}
 		return added;
 	}
-
+	
+	/**
+	 * deleted edge between 2 nodes
+	 * @param n1 - starting node
+	 * @param n2 - ending node
+	 * @return boolean of whether the edge was deleted, false if edge doesn't exist
+	 */
 	public boolean deleteEdge(String n1, String n2) {
 		boolean removed = true;
 		Node node1 = getNodeFromName(n1);
@@ -91,6 +115,11 @@ public class Graph {
 		return removed;
 	}
 
+	/**
+	 * adds a node to the graph
+	 * @param n1 - string name of the node to be added
+	 * @return whether the node was added
+	 */
 	public boolean addNode(String n1) {
 		for (Node n: nodes) {
 			if (n.getName().equals(n1)) {
@@ -102,6 +131,12 @@ public class Graph {
 		return true;
 	}
 	
+	/**
+	 * adds a node to the graph with a color
+	 * @param n1 - string name of the node to be added
+	 * @param color - color of the node if graph is colored
+	 * @return whether the node was added
+	 */
 	public boolean addNode(String n1, String color) {
         for (Node n: nodes) {
             if (n.getName().equals(n1)) {
@@ -128,7 +163,12 @@ public class Graph {
 		nodes.add(newNode);
 		return true;
 	}
-
+	
+	/**
+	 * deletes a node in the graph
+	 * @param n1 - name of node to be deleted
+	 * @return boolean of whether node was deleted, false if node not found in graph
+	 */
 	public boolean deleteNode(String n1) {
 		for (Node n: nodes) {
 			if (n.getName().equals(n1)) {
@@ -141,13 +181,22 @@ public class Graph {
 		return false;
 	}
 
+	/**
+	 * deletes all incident edges of a node
+	 * @param n1 - string name of node who's edges are to be deleted
+	 */
 	public void deleteIncidentEdges(String n1) {
 		ArrayList<Node> neighbors = getOutgoingNeighbors(n1);
 		for (Node n : neighbors) {
 			n.removeEdge(n1);
 		}
 	}
-
+	
+	/**
+	 * gets the out degree of a node
+	 * @param n1 - string name of node
+	 * @return - integer of out degree
+	 */
 	public int getOutDegree(String n1) {
 		for (Node n: nodes) {
 			if (n.getName().equals(n1)) {
@@ -157,10 +206,19 @@ public class Graph {
 		return 0;
 	}
 
+	/**
+	 * gets the number of vertices in the graph
+	 * @return int of number of vertices
+	 */
 	public int numOfVertices() {
 	    return nodes.size();
 	}
 
+	/**
+	 * gets all the outgoing neighbor nodes from a give node
+	 * @param n1 - string name of the node
+	 * @return arraylist of outgoing neighbors as node objects
+	 */
 	public ArrayList<Node> getOutgoingNeighbors(String n1) {
 	    ArrayList<Object[]> edges = null;
 	    ArrayList<Node> neighbors = new ArrayList<Node>();
@@ -178,6 +236,11 @@ public class Graph {
 	    return neighbors;
 	}
 	
+	/**
+	 * gets all the outgoing neighbor nodes from a give node
+	 * @param n1 - node object
+	 * @return arraylist of outgoing neighbors as node objects
+	 */
 	public ArrayList<Node> getOutgoingNeighbors(Node n1) {
 	    ArrayList<Object[]> edges = null;
 	    ArrayList<Node> neighbors = new ArrayList<Node>();
