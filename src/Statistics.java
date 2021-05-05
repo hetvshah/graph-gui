@@ -93,9 +93,15 @@ public class Statistics {
             pageRanks.put(node, 1.0 / size);
         }
         int counter = 0;
+        HashMap<Node, Double> temp = new HashMap<Node, Double>();
         while (counter < 52) {
             for (Node node : nodes) {
-                // TODO: implement
+                temp.put(node, 0.0);
+            }
+            for (Node node : nodes) {
+                for (Node neighbor : g.getOutgoingNeighbors(node)) {
+                    // temp.put(neighbor, temp.get(neighbor) + )
+                }
             }
             counter++;
         }
