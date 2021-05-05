@@ -96,7 +96,11 @@ public class Statistics {
             pageRanks.put(node, 1.0 / size);
         }
         int counter = 0;
+        // initialize {@code temp} HashMap
         HashMap<Node, Double> temp = new HashMap<Node, Double>();
+        for (Node node : nodes) {
+            temp.put(node, 0.0);
+        }
         while (counter < 100) {
             // reset temp
             for (Node node : nodes) {
@@ -174,18 +178,19 @@ public class Statistics {
         
         // System.out.println(stat.getClusteringCoefficient("Sleep"));
         
+        g.setDirected(true);
         g.addNode("A");
         g.addNode("B");
-        // g.addNode("C");
-        // g.addNode("D");
-        // g.addNode("E");
+        g.addNode("C");
+        g.addNode("D");
+        g.addNode("E");
 
         g.addEdge("A", 1, "B");
-        // g.addEdge("A", 1, "E");
-        // g.addEdge("B", 1, "E");
-        // g.addEdge("C", 1, "D");
-        // g.addEdge("C", 1, "E");
-        // g.addEdge("D", 1, "E");
+        g.addEdge("A", 1, "E");
+        g.addEdge("B", 1, "E");
+        g.addEdge("C", 1, "D");
+        g.addEdge("C", 1, "E");
+        g.addEdge("D", 1, "E");
         
         Statistics stat = new Statistics(g);
         HashMap<Node, Double> pageRanks = stat.getPageRanks();
