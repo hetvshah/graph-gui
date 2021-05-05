@@ -7,13 +7,21 @@ import java.util.ArrayList;
  */
 
 public class Graph {
-	private boolean directed = true;
-	private boolean weighted;
+	private boolean directed = Display.isDirected;
+	private boolean weighted = Display.isWeighted;
 	private ArrayList<Node> nodes = new ArrayList<Node>();
 
 	public ArrayList<Node> getNodes() {
 	    return new ArrayList<Node>(nodes);
 	}
+	
+	public void setWeighted(boolean isWeighted) {
+	    this.weighted = isWeighted;
+	}
+	
+	public void setDirected(boolean isDirected) {
+        this.directed = isDirected;
+    }
 
 	public boolean addEdge(String n1, int edgeWeight, String n2) {
 		boolean added = true;
@@ -89,6 +97,17 @@ public class Graph {
 		nodes.add(n);
 		return true;
 	}
+	
+	public boolean addNode(String n1, String color) {
+        for (Node n: nodes) {
+            if (n.getName().equals(n1)) {
+                return false;
+            }
+        }
+        Node n = new Node(n1, color);
+        nodes.add(n);
+        return true;
+    }
 
 	/**
 	 * helper method to add Nodes in the implementation of Prim's algorithm

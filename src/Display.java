@@ -19,6 +19,8 @@ public class Display {
     static boolean isDirected = false;
     static boolean isColored = false;
     
+    static Graph graph = new Graph();
+    
     public static void main(String[] args) {   
         JFrame frame = new JFrame("Graph UI");
         frame.setSize(650, 550);
@@ -133,6 +135,7 @@ public class Display {
                     addEdgeDialogUnweighted(addEdge, popUpPanel);
                 }
                 
+                graph.setWeighted(isWeighted);
                 buttonEnable(shortestPath, kahn, GSCCs, MSTs, homophily);
              }
           });
@@ -145,6 +148,7 @@ public class Display {
                     isDirected = false;
                 }
                 
+                graph.setDirected(isDirected);
                 buttonEnable(shortestPath, kahn, GSCCs, MSTs, homophily);
              }
           });
@@ -200,7 +204,6 @@ public class Display {
             addNode.removeActionListener( al );
         }
 
-
         ActionListener listener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -217,6 +220,8 @@ public class Display {
                 int result = JOptionPane.showConfirmDialog(null, myPanel, 
                          "Please enter name and color of the node.", JOptionPane.OK_CANCEL_OPTION);
                 if (result == JOptionPane.OK_OPTION) {
+                    graph.addNode(name.getText(), color.getText());
+                   
                    System.out.println("name: " + name.getText());
                    System.out.println("color: " + color.getText());
                 }
@@ -236,7 +241,6 @@ public class Display {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JTextField name = new JTextField(5);
-                JTextField color = new JTextField(5);
 
                 JPanel myPanel = new JPanel();
                 myPanel.add(new JLabel("Name of node:"));
@@ -245,6 +249,8 @@ public class Display {
                 int result = JOptionPane.showConfirmDialog(null, myPanel, 
                          "Please enter name and color of the node.", JOptionPane.OK_CANCEL_OPTION);
                 if (result == JOptionPane.OK_OPTION) {
+                   graph.addNode(name.getText());
+                    
                    System.out.println("name: " + name.getText());
                 }
             }
@@ -281,6 +287,8 @@ public class Display {
                          "Please enter the nodes to add an edge between (and their weight).", 
                          JOptionPane.OK_CANCEL_OPTION);
                 if (result == JOptionPane.OK_OPTION) {
+                   graph.addEdge(node1.getText(), Integer.parseInt(weight.toString()), node2.getText());
+                    
                    System.out.println("node 1: " + node1.getText());
                    System.out.println("node 2: " + node2.getText());
                    System.out.println("weight: " + weight.getText());
@@ -299,27 +307,36 @@ public class Display {
         ActionListener listener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JTextField edge1 = new JTextField(5);
-                JTextField edge2 = new JTextField(5);
+                JTextField node1 = new JTextField(5);
+                JTextField node2 = new JTextField(5);
                 myPanel.removeAll();
 
-                myPanel.add(new JLabel("Edge 1: "));
-                myPanel.add(edge1);
+                myPanel.add(new JLabel("Node 1: "));
+                myPanel.add(node1);
                 
-                myPanel.add(new JLabel("Edge 2: "));
-                myPanel.add(edge2);
+                myPanel.add(new JLabel("Node 2: "));
+                myPanel.add(node2);
 
 
                 int result = JOptionPane.showConfirmDialog(null, myPanel, 
                          "Please enter the nodes to add an edge between.", 
                          JOptionPane.OK_CANCEL_OPTION);
                 if (result == JOptionPane.OK_OPTION) {
-                   System.out.println("edge 1: " + edge1.getText());
-                   System.out.println("edge 2: " + edge2.getText());
+                   graph.addEdge(node1.getText(), 1, node2.getText());
+                   System.out.println("node 1: " + node1.getText());
+                   System.out.println("node 2: " + node2.getText());
                 }
             }
          };
         
         addEdge.addActionListener(listener);
+    }
+    
+    public Graph getGraph() {
+        return graph;
+    }
+    
+    public boolean getIsWeighted() {
+        return isWeighted;
     }
 }
