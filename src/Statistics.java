@@ -95,13 +95,35 @@ public class Statistics {
         int counter = 0;
         HashMap<Node, Double> temp = new HashMap<Node, Double>();
         while (counter < 52) {
+            // reset temp
             for (Node node : nodes) {
                 temp.put(node, 0.0);
             }
             for (Node node : nodes) {
+                // calculate contribution to each neighbor
+                double outDegree = (double) g.getOutgoingNeighbors(node).size();
+                double contribution;
+                if (outDegree == 0.0) {
+                    contribution = 0;
+                } else {
+                    contribution = pageRanks.get(node) / outDegree;
+                }
+                // distribute rank
                 for (Node neighbor : g.getOutgoingNeighbors(node)) {
                     // temp.put(neighbor, temp.get(neighbor) + )
+                    temp.put(neighbor, temp.get(neighbor) + contribution);
                 }
+            }
+            // update {@code pageRanks} HashMap
+            boolean unchanged = true;
+            for (Node node : pageRanks.keySet()) {
+                if (pageRanks.get(node) != temp.get(node)) {
+                    unchanged = false;
+                    pageRanks.put(node, temp.get(node));
+                }
+            }
+            if (unchanged) {
+                break;
             }
             counter++;
         }
