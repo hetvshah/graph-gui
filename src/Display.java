@@ -109,9 +109,13 @@ public class Display {
         CC.setBounds(550,40,280,25);
         panel.add(CC);
         
+        ccButton(CC);
+        
         JButton homophily = new JButton("Find homophily");
         homophily.setBounds(550,70,280,25);
         panel.add(homophily);
+        
+        homophilyButton(homophily);
         
         JButton betweenness = new JButton("Find betweenness for an edge");
         betweenness.setBounds(550,100,280,25);
@@ -166,6 +170,72 @@ public class Display {
                 buttonEnable(shortestPath, kahn, GSCCs, MSTs, homophily);
              }
           });
+    }
+    
+    private static void homophilyButton(JButton homophily) {
+        for( ActionListener al : homophily.getActionListeners() ) {
+            homophily.removeActionListener( al );
+        }
+
+        ActionListener listener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Statistics stats = new Statistics(graph);
+
+                JTextField color1 = new JTextField(5);
+                JTextField color2 = new JTextField(5);
+                
+                JPanel myPanel = new JPanel();
+
+                myPanel.add(new JLabel("Color 1:"));
+                myPanel.add(color1); 
+                myPanel.add(new JLabel("Color 2:"));
+                myPanel.add(color2); 
+
+                int result = JOptionPane.showConfirmDialog(null, myPanel, 
+                         "Please enter the two colors of the graph.", JOptionPane.OK_CANCEL_OPTION);
+                if (result == JOptionPane.OK_OPTION) {
+                    System.out.println("color1: " + color1.getText());
+                    System.out.println("color2: " + color2.getText());
+                   double homophilyStat = stats.homophily(color1.getText(), color2.getText());
+                   
+                   System.out.println(homophilyStat);
+                }
+            }
+         };
+        
+         homophily.addActionListener(listener);
+    }
+    
+    private static void ccButton(JButton CC) {
+        for( ActionListener al : CC.getActionListeners() ) {
+            CC.removeActionListener( al );
+        }
+
+        ActionListener listener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Statistics stats = new Statistics(graph);
+
+                JTextField node = new JTextField(5);
+                
+                JPanel myPanel = new JPanel();
+
+                myPanel.add(new JLabel("Name of node:"));
+                myPanel.add(node); 
+
+                int result = JOptionPane.showConfirmDialog(null, myPanel, 
+                         "Please enter node name.", JOptionPane.OK_CANCEL_OPTION);
+                if (result == JOptionPane.OK_OPTION) {
+                   System.out.println("name: " + node.getText());
+                   double clusterCoeff = stats.getClusteringCoefficient(node.getText());
+                   
+                   System.out.println(clusterCoeff);
+                }
+            }
+         };
+        
+         CC.addActionListener(listener);
     }
     
     private static void buttonEnable(JButton shortestPath, JButton kahn, 
@@ -236,7 +306,6 @@ public class Display {
             addNode.removeActionListener( al );
         }
 
-
         ActionListener listener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -247,7 +316,7 @@ public class Display {
                 myPanel.add(name); 
 
                 int result = JOptionPane.showConfirmDialog(null, myPanel, 
-                         "Please enter name and color of the node.", JOptionPane.OK_CANCEL_OPTION);
+                         "Please enter name of the node.", JOptionPane.OK_CANCEL_OPTION);
                 if (result == JOptionPane.OK_OPTION) {
                    graph.addNode(name.getText());
                     
