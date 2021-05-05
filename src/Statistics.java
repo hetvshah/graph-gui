@@ -86,8 +86,6 @@ public class Statistics {
      * @return a hashmap mapping nodes to their page ranks
      */
     public HashMap<Node, Double> getPageRanks() {
-        System.out.println();
-        System.out.println("PageRank runs: ");
         HashMap<Node, Double> pageRanks = new HashMap<Node, Double>();
         ArrayList<Node> nodes = g.getNodes();
         double size = (double) g.numOfVertices();
@@ -101,7 +99,7 @@ public class Statistics {
         for (Node node : nodes) {
             temp.put(node, 0.0);
         }
-        while (counter < 100) {
+        while (counter < 52) {
             // reset temp
             for (Node node : nodes) {
                 temp.put(node, 0.0);
@@ -126,21 +124,14 @@ public class Statistics {
             // update {@code pageRanks} HashMap
             boolean unchanged = true;
             for (Node node : pageRanks.keySet()) {
-                if (pageRanks.get(node) != temp.get(node)) {
+                if (!pageRanks.get(node).equals(temp.get(node))) {
                     unchanged = false;
                     pageRanks.put(node, temp.get(node));
                 }
-                pageRanks.put(node, temp.get(node));
             }
             if (unchanged) {
                 return pageRanks;
             }
-            
-            System.out.println("Run: " + counter);
-            for (Node node : pageRanks.keySet()) {
-                System.out.println(node.getName() + ": " + pageRanks.get(node));
-            }
-            System.out.println();
             counter++;
         }
         return pageRanks;
