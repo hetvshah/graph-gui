@@ -53,25 +53,30 @@ For homophily, we let the user color the nodes (which is asked for when adding a
 - Click “Export CSV” to export a CSV file containing the graph that you made. This can be opened in R to see the graph.
 
 # List of various functionalities:
+
 Directed and Unweighted
 - Kosaraju’s Alg
 - Kahn’s Alg
 - BFS
 - Clustering Coefficient
 - PageRank
+
 Directed and Weighted
 - Kosaraju’s Alg
 - Kahn’s Alg
 - Clustering Coefficient
 - PageRank
+
 Undirected and Unweighted
 - BFS
 - Clustering Coefficient
 - PageRank
+
 Undirected and Weighted
 - Prim’s Alg
 - Clustering Coefficient
 - PageRank
+
 Colored
 - Homophily
 
