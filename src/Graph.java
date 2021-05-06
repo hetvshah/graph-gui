@@ -33,6 +33,10 @@ public class Graph {
         this.directed = isDirected;
     }
 	
+	/**
+	 * gets whether graph is directed
+	 * @return returns true if directed, false if undirected
+	 */
 	public boolean getDirected() {
         return directed;
     }
@@ -257,7 +261,11 @@ public class Graph {
 
 	    return neighbors;
 	}
-
+	/**
+	 * gets the node from it's string name
+	 * @param n1 - string name of the node
+	 * @return the node associated to the name
+	 */
 	public Node getNodeFromName(String n1) {
 	    for (Node n: nodes) {
 	        if (n.getName().equals(n1)) {
