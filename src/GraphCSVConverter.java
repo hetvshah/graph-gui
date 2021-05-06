@@ -22,11 +22,8 @@ public class GraphCSVConverter {
      * @param g the given graph that we want to convert to a CSV file
      */
     public GraphCSVConverter(Graph g) {
-        
         this.g = g;
-        
     }
-    
     
     /**
      * Main method used for testing purposes, creates two files, one for nodes, one for edges
@@ -49,9 +46,6 @@ public class GraphCSVConverter {
         g.addEdge("Matt", 2, "Hetvi");
         
         new GraphCSVConverter(g).convert();
-        
-        
-        
     }
 
     public void convert() {
@@ -83,8 +77,6 @@ public class GraphCSVConverter {
         
         }
         
-        
-        
         try {
             
             File edgeFile = new File("EdgesCSV.csv");
@@ -98,9 +90,6 @@ public class GraphCSVConverter {
                 ArrayList<Object[]> edges = node.getEdges();
                 
                 for (Object[] edge : edges) {
-                    System.out.println(edge[0].toString());
-                    System.out.println(edge[2].toString());
-                    System.out.println(edge[1].toString());
                     bw.write(edge[0].toString() + "," + edge[2].toString() 
                             + "," + edge[1].toString());
                     bw.newLine();
