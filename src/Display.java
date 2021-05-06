@@ -26,7 +26,7 @@ public class Display {
     
     public static void main(String[] args) {   
         JFrame frame = new JFrame("Graph UI");
-        frame.setSize(650, 500);
+        frame.setSize(650, 550);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
 
@@ -41,14 +41,11 @@ public class Display {
         panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
         
         JLabel createGraph = new JLabel("Create Graph");
-        createGraph.setBounds(20, 5, 20, 5);
         createGraph.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        createGraph.setVisible(true);
         createGraph.setForeground(Color.RED);
         panel.add(createGraph);
         
         JButton addNode = new JButton("Add Node");
-        addNode.setBounds(20,40,180,25);
         panel.add(addNode);
         
         JPanel popUpPanel = new JPanel();
@@ -56,52 +53,42 @@ public class Display {
         addNodeDialogNotColored(addNode, popUpPanel);
         
         JButton addEdge = new JButton("Add Edge");
-        addEdge.setBounds(20,70,180,25);
         panel.add(addEdge);
         
         JCheckBox weighted = new JCheckBox("Weighted");
-        weighted.setBounds(20,100,180,25);
         panel.add(weighted);
         
         addEdgeDialogUnweighted(addEdge, popUpPanel);
         
         JCheckBox directed = new JCheckBox("Directed");
-        directed.setBounds(20,130,180,25);
         panel.add(directed);
 
         JCheckBox colored = new JCheckBox("Colored");
-        colored.setBounds(20,160,180,25);
         panel.add(colored);
         
         // ALGORITHMS
         
         JLabel algorithms = new JLabel("Algorithms");
-        algorithms.setBounds(240, 5, 20, 5);
         algorithms.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        algorithms.setVisible(true);
         algorithms.setForeground(Color.RED);
         panel.add(algorithms);
         
         JButton GSCCs = new JButton("Find GSCCs (Kosaraju's alg)");
-        GSCCs.setBounds(240,40,280,25);
         panel.add(GSCCs);
         
         kosarajuButton(GSCCs);
         
         JButton MSTs = new JButton("Find the MST (Prim's alg)");
-        MSTs.setBounds(240,70,280,25);
         panel.add(MSTs);
         
         primButton(MSTs);
         
         JButton kahn = new JButton("Topological Sort (Kahn's alg)");
-        kahn.setBounds(240,100,280,25);
         panel.add(kahn);
         
         kahnButton(kahn);
         
         JButton shortestPath = new JButton("Find Shortest Path (BFS)");
-        shortestPath.setBounds(240,130,280,25);
         panel.add(shortestPath);
         
         shortestPathButton(shortestPath);
@@ -109,29 +96,35 @@ public class Display {
         // STATISTICS
         
         JLabel statistics = new JLabel("Statistics");
-        statistics.setBounds(240, 5, 20, 5);
         statistics.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        statistics.setVisible(true);
         statistics.setForeground(Color.RED);
         panel.add(statistics);
         
         JButton CC = new JButton("Find clustering coefficient for a node");
-        CC.setBounds(550,40,280,25);
         panel.add(CC);
         
         ccButton(CC);
         
         JButton homophily = new JButton("Find homophily");
-        homophily.setBounds(550,70,280,25);
         panel.add(homophily);
         
         homophilyButton(homophily);
 
         JButton pageRank = new JButton("Run PageRank");
-        pageRank.setBounds(550,110,280,25);
         panel.add(pageRank);
         
         pageRankButton(pageRank);
+        
+        // export csv button and label
+        JLabel exportCSVLabel = new JLabel("Export CSV of Graph");
+        exportCSVLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        exportCSVLabel.setForeground(Color.RED);
+        panel.add(exportCSVLabel);
+        
+        JButton exportCSV = new JButton("Export CSV");
+        panel.add(exportCSV);
+        
+        exportCSVButton(exportCSV);
         
         buttonEnable(shortestPath, kahn, GSCCs, MSTs, homophily);
         
@@ -180,6 +173,27 @@ public class Display {
           });
     }
     
+    private static void exportCSVButton(JButton csvFile) {
+        for( ActionListener al : csvFile.getActionListeners() ) {
+            csvFile.removeActionListener( al );
+        }
+
+        ActionListener listener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                GraphCSVConverter converter = new GraphCSVConverter(graph);
+                
+                converter.convert();
+
+                JOptionPane.showConfirmDialog(null, "NodesCSV.csv and EdgesCSV.csv have been exported "
+                        + "to the project folder. You can run GraphR.R to see the graph you made!", 
+                        "Exported CSV", JOptionPane.DEFAULT_OPTION); 
+            }
+        };
+
+        csvFile.addActionListener(listener);
+    }
+    
     private static void primButton(JButton prim) {
         for( ActionListener al : prim.getActionListeners() ) {
             prim.removeActionListener( al );
@@ -197,14 +211,6 @@ public class Display {
                   if (output.get(node) != null) {
                       result = result + output.get(node).getName() + " -- " + node.getName() + "\n";
                   }
-//              for (Object[] array : node.getEdges()) {
-//                  for (Object entry : array) {
-//                      System.out.print(entry);
-//                      System.out.print(" ");
-//                  }
-//                  System.out.println();
-//              }
-//              System.out.println();
           }
 
                 JOptionPane.showConfirmDialog(null, result, 
