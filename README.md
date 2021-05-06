@@ -11,9 +11,9 @@ Graph GUI
 We created a program that allows the user to create a graph and then calculate characteristics like homophily, page rank, and clustering coefficient, run algorithms, and visualize the graph in R. 
 
 # Categories: 
-Graph and graph algorithms: included multiple algorithms, including Prim’s, Kosaraju's, Kahn’s, and BFS
-Social networks: homophily, clustering coefficient
-Physical networks: page rank
+- Graph and graph algorithms: included multiple algorithms, including Prim’s, Kosaraju's, Kahn’s, and BFS
+- Social networks: homophily, clustering coefficient
+- Physical networks: page rank
 
 # Work Breakdown:
 - Matt: Developed methods for Graph and Node class to integrate with algorithms. Worked with Sara on saving the graph as a CSV (GraphCSVConverter). Wrote graph visualizer on R which reads CSV file, parses it into vectors, and produces the graph visualization.
