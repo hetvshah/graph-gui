@@ -203,7 +203,7 @@ public class Display {
                 myPanel.add(node);
 
                 int result = JOptionPane.showConfirmDialog(null, myPanel, 
-                        "Please enter the nodes to add an edge between (and their weight).", 
+                        "Please enter the node to delete.", 
                         JOptionPane.OK_CANCEL_OPTION);
                 if (result == JOptionPane.OK_OPTION) {
                     graph.deleteNode(node.getText());
@@ -236,12 +236,12 @@ public class Display {
                 myPanel.add(node2);
 
                 int result = JOptionPane.showConfirmDialog(null, myPanel, 
-                        "Please enter the nodes to add an edge between (and their weight).", 
+                        "Please enter the nodes to delete the edge between.", 
                         JOptionPane.OK_CANCEL_OPTION);
                 if (result == JOptionPane.OK_OPTION) {
                     graph.deleteEdge(node1.getText(), node2.getText());
 
-                    System.out.println("Deleted edge from \"" + node1.getText() + "\" to " + node2.getText());
+                    System.out.println("Deleted edge from \"" + node1.getText() + "\" to \"" + node2.getText() + "\"");
                 }
             }
         };
