@@ -1,3 +1,10 @@
+install.packages("tidyverse")
+install.packages("network")
+install.packages("igraph")
+install.packages("tidygraph")
+install.packages("ggraph")
+install.packages("rJava")
+
 library(tidyverse)
 library(network)
 library(igraph)
