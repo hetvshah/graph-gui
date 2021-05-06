@@ -192,7 +192,7 @@ public class Graph {
 	public void deleteIncidentEdges(String n1) {
 		ArrayList<Node> neighbors = getOutgoingNeighbors(n1);
 		for (Node n : neighbors) {
-			n.removeEdge(n1);
+			deleteEdge(n1, n.getName());
 		}
 	}
 	
