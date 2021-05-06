@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -128,6 +129,8 @@ public class Display {
         pageRank.setBounds(550,110,280,25);
         panel.add(pageRank);
         
+        pageRankButton(pageRank);
+        
         buttonEnable(shortestPath, kahn, GSCCs, MSTs, homophily);
         
         // ITEM LISTENERS
@@ -175,6 +178,29 @@ public class Display {
           });
     }
     
+    private static void pageRankButton(JButton pageRank) {
+        for( ActionListener al : pageRank.getActionListeners() ) {
+            pageRank.removeActionListener( al );
+        }
+
+        ActionListener listener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String output = "";
+                Statistics stat = new Statistics(graph);
+                HashMap<Node, Double> pageRanks = stat.getPageRanks();
+                for (Node node : pageRanks.keySet()) {
+                    output = output + node.getName() + ": " + pageRanks.get(node) + "\n";
+                }
+
+                JOptionPane.showConfirmDialog(null, output, 
+                        "Page Rank", JOptionPane.DEFAULT_OPTION); 
+            }
+        };
+
+        pageRank.addActionListener(listener);
+    }
+    
     private static void kahnButton(JButton kahn) {
         for( ActionListener al : kahn.getActionListeners() ) {
             kahn.removeActionListener( al );
@@ -191,7 +217,7 @@ public class Display {
                     names.add(node.getName());
                 }
 
-                JOptionPane.showConfirmDialog(null, "The topo sort for this graph is " + output, 
+                JOptionPane.showConfirmDialog(null, "The topo sort for this graph is " + names, 
                         "Kahn's Alg", JOptionPane.DEFAULT_OPTION); 
             }
         };
@@ -337,7 +363,7 @@ public class Display {
             shortestPath.setEnabled(false);
             kahn.setEnabled(true);
             GSCCs.setEnabled(true);
-            MSTs.setEnabled(true);
+            MSTs.setEnabled(false);
         } else if (isWeighted && !isDirected) {
             shortestPath.setEnabled(false);
             kahn.setEnabled(false);

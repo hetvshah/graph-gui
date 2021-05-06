@@ -69,21 +69,28 @@ public class Prim {
 
     public static void main(String[] args) {
         Graph graph = new Graph();
-        graph.setDirected(true);
+        graph.setDirected(false);
+        graph.setWeighted(true);
+
         graph.addNode("A");
         graph.addNode("B");
         graph.addNode("C");
-        graph.addNode("D");
-        graph.addNode("E");
+        
         graph.addEdge("A", 1, "B");
         graph.addEdge("B", 2, "C");
-        graph.addEdge("C", 3, "D");
-        graph.addEdge("D", 4, "E");
-        graph.addEdge("E", 50, "A");
-        graph.addEdge("A", 60, "D");
-        graph.addEdge("D", 70, "B");
-        graph.addEdge("B", 80, "E");
-        graph.addEdge("E", 90, "C");
+        graph.addEdge("A", 3, "C");
+        
+//        graph.addNode("D");
+//        graph.addNode("E");
+//        graph.addEdge("A", 1, "B");
+//        graph.addEdge("B", 2, "C");
+//        graph.addEdge("C", 3, "D");
+//        graph.addEdge("D", 4, "E");
+//        graph.addEdge("E", 50, "A");
+//        graph.addEdge("A", 60, "D");
+//        graph.addEdge("D", 70, "B");
+//        graph.addEdge("B", 80, "E");
+//        graph.addEdge("E", 90, "C");
         Prim prim = new Prim(graph);
         Graph mst = prim.mst();
         for (Node node : mst.getNodes()) {
