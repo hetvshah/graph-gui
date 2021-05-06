@@ -16,19 +16,35 @@ public class Node {
 		this.name = id;
 		this.color = color;
 	}
-
+	/**
+	 * gets the color
+	 * @return string color name
+	 */
 	public String getColor() {
 		return this.color;
 	}
-
+	
+	/**
+	 * gets the name of the node
+	 * @return string node name
+	 */
 	public String getName() {
 		return name;
 	}
 	
+	/**
+	 * 
+	 * @return gets int degree
+	 */
 	public int getDegree() {
 		return edges.size();
 	}
 	
+	/**
+	 * gets the weight of an edge
+	 * @param ending node name
+	 * @return integer weight of the edge between start and end node
+	 */
 	public int getWeight(String end) {
 	    int weight = 1;
 	    
@@ -41,6 +57,11 @@ public class Node {
 	    return weight;
 	}
 	
+	/**
+	 * gets the weight of an edge
+	 * @param ending node
+	 * @return integer weight of the edge between start and end node
+	 */
 	public int getWeight(Node end) {
 	    int weight = 1;
 	    
@@ -53,10 +74,20 @@ public class Node {
 	    return weight;
 	}
 
+	/**
+	 * gets edges from node
+	 * @return edges arraylist of edge objects
+	 */
 	public ArrayList<Object[]> getEdges() {
 	    return edges;
 	}
-
+	
+	/**
+	 * adds edges to graph
+	 * @param edgeWeight - int edge weight
+	 * @param neighbor - string of neighbor node
+	 * @return - boolean of whether edge was added or not
+	 */
 	public boolean addEdge(int edgeWeight, String neighbor) {
 
 	    for (Object[] e : edges) {
@@ -96,6 +127,11 @@ public class Node {
 		return true;
 	}
 	
+	/**
+	 * removes an edge given end node name
+	 * @param neighbor - string name of neighbor
+	 * @return boolean of whether edge was removed
+	 */
 	public boolean removeEdge(String neighbor) {
 		for (Object[] e : edges) {
 			if (e[2].toString().equals(neighbor)) {
@@ -106,6 +142,11 @@ public class Node {
 		return false;
 	}
 	
+	/**
+	 * checks whether edge exists
+	 * @param neighbor - string name of end node
+	 * @return boolean of whether edge exists
+	 */
 	public boolean hasEdge(String neighbor) {
         for (Object[] e : edges) {
             if (e[2].toString().equals(neighbor)) {
