@@ -1,5 +1,4 @@
 import java.awt.Color;
-import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -25,8 +24,8 @@ public class Display {
     static Graph graph = new Graph();
     
     public static void main(String[] args) {   
-        JFrame frame = new JFrame("Graph UI");
-        frame.setSize(650, 550);
+        JFrame frame = new JFrame("Graph GUI :)");
+        frame.setSize(400, 550);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
 
