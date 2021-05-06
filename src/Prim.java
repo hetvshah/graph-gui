@@ -20,9 +20,9 @@ public class Prim {
      * 
      * @return the Minimum Spanning Tree produced by running Prim's algorithm
      */
-    public Graph mst() {
+    public HashMap<Node, Node> mst() {
         if (graph.numOfVertices() == 0) {
-            return graph;
+            return new HashMap<Node, Node>();
         }
         key = new HashMap<Node, Integer>();
         parent = new HashMap<Node, Node>();
@@ -53,18 +53,19 @@ public class Prim {
                 }
             }
         }
-        for (Node node : parent.keySet()) {
-            mst.addNode(node);
-            Node parentNode = parent.get(node);
-            if (parentNode != null) {
-                mst.addNode(parentNode);
-                mst.addEdge(parentNode, parentNode.getWeight(node), node);
-            }
-        }
-        if (mst.numOfVertices() != this.graph.numOfVertices()) {
-            throw new IllegalArgumentException();
-        }
-        return mst;
+        return parent;
+        // for (Node node : parent.keySet()) {
+        //     mst.addNode(node);
+        //     Node parentNode = parent.get(node);
+        //     if (parentNode != null) {
+        //         mst.addNode(parentNode);
+        //         mst.addEdge(parentNode, parentNode.getWeight(node), node);
+        //     }
+        // }
+        // if (mst.numOfVertices() != this.graph.numOfVertices()) {
+        //     throw new IllegalArgumentException();
+        // }
+        // return mst;
     }
 
     public static void main(String[] args) {
@@ -92,18 +93,18 @@ public class Prim {
 //        graph.addEdge("B", 80, "E");
 //        graph.addEdge("E", 90, "C");
         Prim prim = new Prim(graph);
-        Graph mst = prim.mst();
-        for (Node node : mst.getNodes()) {
-            System.out.println(node.getName() + ":");
-            for (Object[] array : node.getEdges()) {
-                for (Object entry : array) {
-                    System.out.print(entry);
-                    System.out.print(" ");
-                }
-                System.out.println();
-            }
-            System.out.println();
-        }
+        HashMap<Node, Node> mst = prim.mst();
+//        for (Node node : mst.getNodes()) {
+//            System.out.println(node.getName() + ":");
+//            for (Object[] array : node.getEdges()) {
+//                for (Object entry : array) {
+//                    System.out.print(entry);
+//                    System.out.print(" ");
+//                }
+//                System.out.println();
+//            }
+//            System.out.println();
+//        }
     }
 }
         

@@ -92,6 +92,8 @@ public class Display {
         MSTs.setBounds(240,70,280,25);
         panel.add(MSTs);
         
+        primButton(MSTs);
+        
         JButton kahn = new JButton("Topological Sort (Kahn's alg)");
         kahn.setBounds(240,100,280,25);
         panel.add(kahn);
@@ -176,6 +178,41 @@ public class Display {
                 buttonEnable(shortestPath, kahn, GSCCs, MSTs, homophily);
              }
           });
+    }
+    
+    private static void primButton(JButton prim) {
+        for( ActionListener al : prim.getActionListeners() ) {
+            prim.removeActionListener( al );
+        }
+
+        ActionListener listener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String result = "The following edges construct the MST: \n\n";
+                Prim primObj = new Prim(graph);
+                
+                HashMap<Node, Node> output = primObj.mst();
+                
+              for (Node node : output.keySet()) {
+                  if (output.get(node) != null) {
+                      result = result + output.get(node).getName() + " -- " + node.getName() + "\n";
+                  }
+//              for (Object[] array : node.getEdges()) {
+//                  for (Object entry : array) {
+//                      System.out.print(entry);
+//                      System.out.print(" ");
+//                  }
+//                  System.out.println();
+//              }
+//              System.out.println();
+          }
+
+                JOptionPane.showConfirmDialog(null, result, 
+                        "Prim's Alg", JOptionPane.DEFAULT_OPTION); 
+            }
+        };
+
+        prim.addActionListener(listener);
     }
     
     private static void pageRankButton(JButton pageRank) {
