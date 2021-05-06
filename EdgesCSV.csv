@@ -1,3 +1,7 @@
 From,To,Weight
-help,me,1
-me,help,1
+Sara,Hetvi,4
+Sara,Emily,7
+Hetvi,Sara,4
+Hetvi,Emily,2
+Emily,Hetvi,2
+Emily,Sara,7
