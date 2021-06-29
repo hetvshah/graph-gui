@@ -1,5 +1,5 @@
 # graph-gui
-NETS 150 Final Project
+NETS 150, Spring 2021
 
 # Authors: 
 Matt Friedman, Emily Paul, Sara Xin, Hetvi Shah
@@ -79,4 +79,3 @@ Undirected and Weighted
 
 Colored
 - Homophily
-
