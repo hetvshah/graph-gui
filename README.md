@@ -2,6 +2,7 @@
 This program will allow the user to create a graph, and it will calculate statistics (homophily, page rank, and clustering coefficient), run algorithms (BFS, Kahn's, Kosaraju's, and Prim's), and visualize the graph in R. 
 
 Made by Matt Friedman, Emily Paul, Sara Xin, Hetvi Shah
+NETS 150, Spring 2021
 
 <img width="398" alt="Screen Shot 2021-05-05 at 9 32 14 PM" src="https://user-images.githubusercontent.com/68198839/126089006-e3455c0c-2c75-4ce7-ae54-3c38741bb98d.png">
 
