@@ -3,6 +3,10 @@ This program will allow the user to create a graph, and it will calculate statis
 
 Made by Matt Friedman, Emily Paul, Sara Xin, Hetvi Shah
 
+<img width="398" alt="Screen Shot 2021-05-05 at 9 32 14 PM" src="https://user-images.githubusercontent.com/68198839/126089006-e3455c0c-2c75-4ce7-ae54-3c38741bb98d.png">
+
+This is the home screen—the program displays various input boxes and modals when necessary.
+
 ### Categories: 
 - Graph and graph algorithms: included multiple algorithms, including Prim’s, Kosaraju's, Kahn’s, and BFS
 - Social networks: homophily, clustering coefficient
