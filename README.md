@@ -1,8 +1,7 @@
 # graph-gui
 This program will allow the user to create a graph, and it will calculate statistics (homophily, page rank, and clustering coefficient), run algorithms (BFS, Kahn's, Kosaraju's, and Prim's), and visualize the graph in R. 
 
-Made by Matt Friedman, Emily Paul, Sara Xin, Hetvi Shah
-NETS 150, Spring 2021
+NETS 150, Spring 2021; Made by Matt Friedman, Emily Paul, Sara Xin, Hetvi Shah
 
 <img width="398" alt="Screen Shot 2021-05-05 at 9 32 14 PM" src="https://user-images.githubusercontent.com/68198839/126089006-e3455c0c-2c75-4ce7-ae54-3c38741bb98d.png">
 
@@ -40,7 +39,7 @@ Open the R file and install packages.
 For homophily, we let the user color the nodes (which is asked for when adding a node if the “Colored” checkbox is checked). We assume that the user will only enter in two colors, which will be the two colors entered as input when wanting to calculate the homophily. We also assume that the user inputs a valid R color (http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf) to be able to visualize the graph with our R script.
 - For any input asked, we assume that the name of the nodes will be valid, existent, and correct.
 
-#### Interacting with the GUI:
+### Interacting with the GUI:
 - Check the respective checkboxes of directed, colored, and weighted.
 * Note: Coloring the nodes is to calculate the homophily. See Assumptions for more details.
 - Click “Add Node” and enter the name of the node and color if necessary. 
